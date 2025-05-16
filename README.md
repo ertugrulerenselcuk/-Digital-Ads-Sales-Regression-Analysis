@@ -28,6 +28,31 @@ Google Ads ve Sales kolonlarında **Box Plot (kutu grafiği)** ile uç değerler
 
 ![Google Ads Scatter](images/googleads_scatter.png)
 ![Sales Scatter](images/sales_scatter.png)
+📌 Argümanlar:
+dizi: İncelenecek sayıların olduğu hücre aralığı.
+çeyrek: Hangi çeyreği almak istediğini belirtir.
+0 → Minimum değer (Q0)
+1 → 1. çeyrek (Q1) → %25
+2 → 2. çeyrek (Q2) → Medyan → %50
+3 → 3. çeyrek (Q3) → %75
+4 → Maksimum değer (Q4)
+🔍 Ne İşe Yarar?
+Veri dağılımını analiz eder:
+Verilerin ne kadar yayıldığını ve ortalamanın etrafında nasıl dağıldığını gösterir.
+Uç değerleri (outlier) belirler:
+Özellikle Box Plot (kutu grafiği) oluştururken kullanılır.
+RFM, müşteri segmentasyonu gibi analizlerde gruplamaya yardımcı olur.
+Satış analizlerinde düşük, orta, yüksek performanslı ürünleri ayırmada kullanılır.
+📊 Örnek:
+A1:A10 aralığında şu değerler var diyelim:
+10, 15, 20, 25, 30, 35, 40, 45, 50, 55
+=QUARTILE(A1:A10, 1) → 20
+=QUARTILE(A1:A10, 2) → 32.5
+=QUARTILE(A1:A10, 3) → 45
+⚠️ Not:
+Yeni Excel sürümlerinde QUARTILE yerine QUARTILE.INC ve QUARTILE.EXC kullanman önerilir:
+QUARTILE.INC → %0 ile %100 dahil edilir (standarttır)
+QUARTILE.EXC → %0 ve %100 hariç tutulur
 
 **QUARTILE** fonksiyonu ile çeyrek değerler ve IQR hesaplandı:
 
@@ -52,12 +77,68 @@ Outlier sınırları:
 ```excel
 =IF(D23 > $D$10; $D$10; D23)
 ```
+## KAVRAMLAR:
 
+### 🔹 Q1 (Quartile 1 / 1. Çeyrek):
+
+- Verilerin %25’inin altında kaldığı değerdir.
+- Küçük değerli verilerin sınırını gösterir.
+
+### 🔹 Q3 (Quartile 3 / 3. Çeyrek):
+
+- Verilerin %75’inin altında kaldığı değerdir.
+- Büyük değerli verilerin sınırını gösterir.
+
+### 🔹 IQR (Interquartile Range / Çeyrekler Arası Aralık):
+
+- **IQR = Q3 - Q1**
+- Verilerin orta %50’lik kısmının yayılımını gösterir.
+
+---
+
+## ⚠️ UÇ DEĞER ANALİZİ:
+
+İstatistikte uç değerleri (aykırı değerler) bulmak için şu sınırlar kullanılır:
+
+- **Alt sınır (lower bound)** = Q1 − 1.5 × IQR
+- **Üst sınır (upper bound)** = Q3 + 1.5 × IQR
+
+Bu sınırların **dışında kalan** veriler **aykırı (uç) değer** olarak kabul edilir.
+
+---
+
+## 🔢 ÖRNEK:
+
+Veri kümesi:
+
+`5, 7, 8, 9, 10, 11, 12, 13, 14, 30`
+
+- Q1 = 8
+- Q3 = 13
+- IQR = Q3 - Q1 = 13 - 8 = **5**
 Sağa doğru kopyalanabilir hale getirmek için kolon sabitleme ayarlandı.
 
 ![Outlier Baskılama](images/outlier_if_logic.png)
 
 ---
+📌 Formül yapısı:
+
+IF(logical_test; value_if_true; value_if_false)
+​
+Bu yapıda:
+D23 > $D$10: Şartımız (upper limitten büyük mü?)
+$D$10: Eğer büyükse ne yazılacak? (upper limit ile baskılanıyor)
+D23: Değilse orijinal değeri koru
+❓ Neden iki kez $D$10 yazıyoruz?
+Çünkü:
+Birincisi koşulu kontrol etmek için: D23 > $D$10
+İkincisi şart sağlanırsa döndürülecek değeri belirlemek için: $D$10
+Bu ikisi ayrı yerlerde kullanılıyor. Excel, bir koşulda hangi hücreye bakacağını ve hangi hücre değerini döndüreceğini ayrı ayrı sorar.
+📌 Peki neden $ işaretiyle sabitliyoruz ($D$10)?
+Çünkü:
+Formülü aşağıya doğru kopyaladığınızda (D24, D25 vs.), D10 hücresi de değişmesin.
+Yani D23 > D10 → D24 > D11 olmasın. Hep aynı sabit üst sınır hücresine (D10) baksın diye $ işaretiyle sabitliyoruz.
+Özet:
 
 ### 4. 📊 Regresyon Öncesi Temizlik
 
@@ -125,20 +206,4 @@ Tüm görseller `images/` klasöründe yer almakta. Örnek:
 ![Sales Scatter](images/sales_scatter.png)
 ```
 
----
 
-## 🧩 LinkedIn Paylaşım Önerisi:
-
-```
-📊 Dijital Reklam ve Satış Analizi (Excel & İstatistik)
-
-Google Ads, Meta, TikTok ve Influencer harcamalarının satışlara etkisini analiz ettim. Aykırı değerleri baskılayarak regresyonla en verimli kanalı belirledim.
-
-🛠 Araçlar: Excel, QUARTILE, IQR, IF, Regression  
-📈 Sonuç: Google Ads harcamasında 1.43 katsayı ile en yüksek dönüş alındı.  
-🧠 Öğrenilenler: İstatistiksel temizlik ve veri analizi karar süreçlerinde altın değerinde.
-
-📎 Proje GitHub'da: [GitHub Linkini buraya koy]
-
-#dataanalysis #excel #regression #digitalmarketing #portfolio #dataproject
-```
