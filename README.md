@@ -27,7 +27,7 @@ Bu proje, dijital reklam harcamalarının (Google Ads, Meta, TikTok, Influencer)
 Google Ads ve Sales kolonlarında **Box Plot (kutu grafiği)** ile uç değerler (outlier) tespit edildi.
 
 ![Google Ads Scatter](images/googleads_scatter.png)
-![Sales Scatter](images/sales_scatter.png)
+
 📌 Argümanlar:
 dizi: İncelenecek sayıların olduğu hücre aralığı.
 çeyrek: Hangi çeyreği almak istediğini belirtir.
@@ -129,16 +129,7 @@ Bu yapıda:
 D23 > $D$10: Şartımız (upper limitten büyük mü?)
 $D$10: Eğer büyükse ne yazılacak? (upper limit ile baskılanıyor)
 D23: Değilse orijinal değeri koru
-❓ Neden iki kez $D$10 yazıyoruz?
-Çünkü:
-Birincisi koşulu kontrol etmek için: D23 > $D$10
-İkincisi şart sağlanırsa döndürülecek değeri belirlemek için: $D$10
-Bu ikisi ayrı yerlerde kullanılıyor. Excel, bir koşulda hangi hücreye bakacağını ve hangi hücre değerini döndüreceğini ayrı ayrı sorar.
-📌 Peki neden $ işaretiyle sabitliyoruz ($D$10)?
-Çünkü:
-Formülü aşağıya doğru kopyaladığınızda (D24, D25 vs.), D10 hücresi de değişmesin.
-Yani D23 > D10 → D24 > D11 olmasın. Hep aynı sabit üst sınır hücresine (D10) baksın diye $ işaretiyle sabitliyoruz.
-Özet:
+
 
 ### 4. 📊 Regresyon Öncesi Temizlik
 
@@ -199,11 +190,6 @@ Toplam tahmini gelir: **68.5 TL**
 
 ---
 
-## 📎 Görseller
 
-Tüm görseller `images/` klasöründe yer almakta. Örnek:  
-```markdown
-![Sales Scatter](images/sales_scatter.png)
-```
 
 
