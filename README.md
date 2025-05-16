@@ -38,17 +38,7 @@ dizi: İncelenecek sayıların olduğu hücre aralığı.
 4 → Maksimum değer (Q4)
 🔍 Ne İşe Yarar?
 Veri dağılımını analiz eder:
-Verilerin ne kadar yayıldığını ve ortalamanın etrafında nasıl dağıldığını gösterir.
-Uç değerleri (outlier) belirler:
-Özellikle Box Plot (kutu grafiği) oluştururken kullanılır.
-RFM, müşteri segmentasyonu gibi analizlerde gruplamaya yardımcı olur.
-Satış analizlerinde düşük, orta, yüksek performanslı ürünleri ayırmada kullanılır.
-📊 Örnek:
-A1:A10 aralığında şu değerler var diyelim:
-10, 15, 20, 25, 30, 35, 40, 45, 50, 55
-=QUARTILE(A1:A10, 1) → 20
-=QUARTILE(A1:A10, 2) → 32.5
-=QUARTILE(A1:A10, 3) → 45
+
 ⚠️ Not:
 Yeni Excel sürümlerinde QUARTILE yerine QUARTILE.INC ve QUARTILE.EXC kullanman önerilir:
 QUARTILE.INC → %0 ile %100 dahil edilir (standarttır)
